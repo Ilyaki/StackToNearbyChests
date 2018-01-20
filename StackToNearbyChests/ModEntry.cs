@@ -24,8 +24,7 @@ namespace StackToNearbyChests
         internal static Texture2D buttonIcon { get; private set; }
 
         Texture2D fadeToBlackTexture;
-
-        //test1234
+        
         
         public override void Entry(IModHelper helper)
         {
