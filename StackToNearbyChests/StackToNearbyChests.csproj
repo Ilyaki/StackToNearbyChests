@@ -54,8 +54,6 @@
     <None Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include=".gitattributes" />
     <Content Include="icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
