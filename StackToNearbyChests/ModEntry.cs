@@ -25,6 +25,8 @@ namespace StackToNearbyChests
 
         Texture2D fadeToBlackTexture;
 
+        //test1234
+        
         public override void Entry(IModHelper helper)
         {
             buttonIcon = helper.Content.Load<Texture2D>(@"icon.png");
