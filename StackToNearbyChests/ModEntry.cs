@@ -25,7 +25,6 @@ namespace StackToNearbyChests
 
         Texture2D fadeToBlackTexture;
         
-        //test
         
         public override void Entry(IModHelper helper)
         {
