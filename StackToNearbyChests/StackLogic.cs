@@ -11,14 +11,14 @@ namespace StackToNearbyChests
 {
     static class StackLogic
     {
-        internal static void StackToNearbyChests()
+        internal static void StackToNearbyChests(int radius)
         {
             if (Game1.getAllFarmers().Count > 0 && Game1.getAllFarmers()[0] != null && Game1.getAllFarmers()[0].currentLocation != null)
             {
 
                 StardewValley.Farmer farmer = Game1.getAllFarmers()[0];
 
-                foreach (Chest chest in GetChestsAroundFarmer(farmer, 5))
+                foreach (Chest chest in GetChestsAroundFarmer(farmer, radius))
                 {
                     List<Item> itemsToRemoveFromPlayer = new List<Item>();
                     bool movedAtLeastOne = false;

@@ -24,10 +24,13 @@ namespace StackToNearbyChests
         internal static Texture2D buttonIcon { get; private set; }
 
         Texture2D fadeToBlackTexture;
-        
+
+        internal static ModConfig config { get; private set; }
         
         public override void Entry(IModHelper helper)
         {
+            config = helper.ReadConfig<ModConfig>();
+
             buttonIcon = helper.Content.Load<Texture2D>(@"icon.png");
             fadeToBlackTexture = Game1.fadeToBlackRect;
 

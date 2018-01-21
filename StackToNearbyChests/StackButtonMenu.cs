@@ -48,7 +48,7 @@ namespace StackToNearbyChests
         {
             if (button.bounds.Contains(x, y))
             {
-                StackLogic.StackToNearbyChests();
+                StackLogic.StackToNearbyChests(ModEntry.config.Radius);
             }
         }
 
