@@ -37,9 +37,13 @@ namespace StackToNearbyChests
                                 chestItem.Stack += amountToRemove;
 
                                 if (playerItem.Stack > amountToRemove)
+                                {
                                     playerItem.Stack -= amountToRemove;
+                                }
                                 else
+                                {
                                     itemsToRemoveFromPlayer.Add(playerItem);
+                                }
                             }
                         }
                     }

@@ -26,6 +26,8 @@ namespace StackToNearbyChests
 
         ClickableTextureComponent button;
 
+        internal Rectangle buttonBounds { get => button.bounds; }
+
         public StackButtonMenu(int pageX, int pageY, int pageWidth, int pageHeight) : base(pageX + pageWidth, yShift + pageY + pageHeight / 3 - Game1.tileSize + Game1.pixelZoom * 2, Game1.tileSize, Game1.tileSize)
      
         {
@@ -46,7 +48,7 @@ namespace StackToNearbyChests
 
         public override void receiveLeftClick(int x, int y, bool playSound = true)
         {
-            if (button.bounds.Contains(x, y))
+            if (button.bounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))
             {
                 StackLogic.StackToNearbyChests(ModEntry.config.Radius);
             }

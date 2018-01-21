@@ -38,7 +38,7 @@ namespace StackToNearbyChests
             StardewModdingAPI.Events.ControlEvents.MouseChanged += (o, e) => {
                 if (button != null && e.NewState.LeftButton == ButtonState.Pressed && e.PriorState.LeftButton == ButtonState.Released)
                 {
-                    if (button.isWithinBounds(e.NewState.X, e.NewState.Y))
+                    if (button.buttonBounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))
                     {
                         button.receiveLeftClick(e.NewState.X, e.NewState.Y);
                     }
