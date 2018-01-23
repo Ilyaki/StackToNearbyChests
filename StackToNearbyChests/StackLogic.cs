@@ -27,9 +27,10 @@ namespace StackToNearbyChests
                     //need to compare quality
                     foreach (Item chestItem in chest.items)
                     {
-                        int remainingStackSize = chestItem.getRemainingStackSpace();
+                        //
                         foreach (Item playerItem in farmer.items)
                         {
+                            int remainingStackSize = chestItem.getRemainingStackSpace();
                             if (playerItem != null && chestItem != null && !(itemsToRemoveFromPlayer.Contains(playerItem)) && playerItem.canStackWith(chestItem) && playerItem.CompareTo(chestItem) == 0)
                             {
                                 movedAtLeastOne = true;
