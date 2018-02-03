@@ -82,7 +82,7 @@ namespace StackToNearbyChests
         {
             base.update(time);
         }
-
+        
         public override void performHoverAction(int x, int y)
         {
             const float maxScaleIncrease = 0.1f;
