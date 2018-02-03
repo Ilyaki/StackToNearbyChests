@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
+using StardewValley.Locations;
 using StardewValley.Objects;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace StackToNearbyChests
             {
 
                 StardewValley.Farmer farmer = Game1.getAllFarmers()[0];
-
+                
                 foreach (Chest chest in GetChestsAroundFarmer(farmer, radius))
                 {
                     List<Item> itemsToRemoveFromPlayer = new List<Item>();
@@ -27,9 +28,10 @@ namespace StackToNearbyChests
                     //need to compare quality
                     foreach (Item chestItem in chest.items)
                     {
-                        int remainingStackSize = chestItem.getRemainingStackSpace();
+                        //
                         foreach (Item playerItem in farmer.items)
                         {
+                            int remainingStackSize = chestItem.getRemainingStackSpace();
                             if (playerItem != null && chestItem != null && !(itemsToRemoveFromPlayer.Contains(playerItem)) && playerItem.canStackWith(chestItem) && playerItem.CompareTo(chestItem) == 0)
                             {
                                 movedAtLeastOne = true;
@@ -67,6 +69,7 @@ namespace StackToNearbyChests
         {
             Vector2 farmerLocation = farmer.getTileLocation();
 
+            //Normal object chests
             for (int dx = -radius; dx <= radius; dx++)
             {
                 for (int dy = -radius; dy <= radius; dy++)
@@ -78,6 +81,19 @@ namespace StackToNearbyChests
                         Chest chest = blockObject as Chest;
                         yield return chest;
                     }
+                }
+            }
+
+            //Fridge
+            FarmHouse farmHouse = farmer?.currentLocation as FarmHouse;
+            if(farmHouse != null && farmHouse.upgradeLevel >= 1) //Lvl 1,2,3 is where you have fridge upgrade
+            {
+                Point fridgeLocation = farmHouse.getKitchenStandingSpot();
+                fridgeLocation.X += 2; fridgeLocation.Y += -1; //Fridge spot relative to kitchen spot
+
+                if (Math.Abs(farmerLocation.X - fridgeLocation.X) <= radius && Math.Abs(farmerLocation.Y - fridgeLocation.Y) <= radius)
+                {
+                    yield return farmHouse.fridge;
                 }
             }
         }
