@@ -36,6 +36,8 @@ namespace StackToNearbyChests
 
             //since the button is not the ACTIVE menu, the receiveLeftClick will never be called by SDV.
             StardewModdingAPI.Events.ControlEvents.MouseChanged += (o, e) => {
+                button?.performHoverAction(Game1.getOldMouseX(), Game1.getOldMouseY());
+
                 if (button != null && e.NewState.LeftButton == ButtonState.Pressed && e.PriorState.LeftButton == ButtonState.Released)
                 {
                     if (button.buttonBounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))

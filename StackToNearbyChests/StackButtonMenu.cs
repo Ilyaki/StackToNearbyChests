@@ -1,15 +1,10 @@
 ﻿using StardewValley.Menus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
 using StardewValley;
-using StardewModdingAPI;
 
 
 namespace StackToNearbyChests
@@ -88,5 +83,19 @@ namespace StackToNearbyChests
             base.update(time);
         }
         
+        public override void performHoverAction(int x, int y)
+        {
+            const float maxScaleIncrease = 0.1f;
+
+            if (buttonBounds.Contains(x, y))
+            {
+                button.scale = Math.Min(button.scale + 0.04f, button.baseScale + maxScaleIncrease);
+                Game1.SetFreeCursorDrag();
+            }
+            else
+            {
+                button.scale = Math.Max(button.scale - 0.04f, button.baseScale);
+            }
+        }
     }
 }
