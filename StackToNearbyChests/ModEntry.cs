@@ -21,18 +21,24 @@ namespace StackToNearbyChests
 
         int? currentTab = null;
 
-        internal static Texture2D buttonIcon { get; private set; }
+        internal static Texture2D ButtonIcon { get; private set; }
 
         Texture2D fadeToBlackTexture;
 
-        internal static ModConfig config { get; private set; }
-        
+        internal static ModConfig Config { get; private set; }
+
+        ControllerButtonReceiver controllerButtonReceiver;
+
         public override void Entry(IModHelper helper)
         {
-            config = helper.ReadConfig<ModConfig>();
+            Config = helper.ReadConfig<ModConfig>();
 
-            buttonIcon = helper.Content.Load<Texture2D>(@"icon.png");
+            ButtonIcon = helper.Content.Load<Texture2D>(@"icon.png");
             fadeToBlackTexture = Game1.fadeToBlackRect;
+
+            //Controller button(e.g. RightStick) workaround
+            controllerButtonReceiver = new ControllerButtonReceiver();
+            StardewModdingAPI.Events.ControlEvents.ControllerButtonPressed += controllerButtonReceiver.ControlEvents_ControllerButtonPressed;
 
             //since the button is not the ACTIVE menu, the receiveLeftClick will never be called by SDV.
             StardewModdingAPI.Events.ControlEvents.MouseChanged += (o, e) => {
@@ -40,7 +46,7 @@ namespace StackToNearbyChests
 
                 if (button != null && e.NewState.LeftButton == ButtonState.Pressed && e.PriorState.LeftButton == ButtonState.Released)
                 {
-                    if (button.buttonBounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))
+                    if (button.ButtonBounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))
                     {
                         button.receiveLeftClick(e.NewState.X, e.NewState.Y);
                     }
@@ -69,8 +75,7 @@ namespace StackToNearbyChests
                         List<IClickableMenu> menuList = helper.Reflection.GetField<List<IClickableMenu>>(gameMenu, "pages").GetValue();
                         foreach (IClickableMenu page in menuList)
                         {
-                            InventoryPage invPage = page as InventoryPage;
-                            if (invPage != null)
+                            if (page is InventoryPage invPage)
                             {
                                 button = new StackButtonMenu(invPage.xPositionOnScreen, invPage.yPositionOnScreen, invPage.width, invPage.height);
                                 Game1.onScreenMenus.Add(button);
@@ -87,14 +92,12 @@ namespace StackToNearbyChests
             };
 
             StardewModdingAPI.Events.MenuEvents.MenuChanged += (o, e) => {
-                GameMenu menu = e.NewMenu as GameMenu;
-                if (menu != null)
+                if (e.NewMenu is GameMenu menu)
                 {
                     List<IClickableMenu> menuList = helper.Reflection.GetField<List<IClickableMenu>>(menu, "pages").GetValue();
                     foreach (IClickableMenu page in menuList)
                     {
-                        InventoryPage invPage = page as InventoryPage;
-                        if (invPage != null)
+                        if (page is InventoryPage invPage)
                         {
                             //remove old one first
                             Game1.onScreenMenus.Remove(button);

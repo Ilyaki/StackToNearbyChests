@@ -9,5 +9,6 @@ namespace StackToNearbyChests
     class ModConfig
     {
         public int Radius { get; set; } = 5;
+        public string ControllerButton { get; set; } = Microsoft.Xna.Framework.Input.Buttons.RightStick.ToString();
     }
 }

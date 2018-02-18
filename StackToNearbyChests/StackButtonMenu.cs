@@ -21,7 +21,7 @@ namespace StackToNearbyChests
 
         ClickableTextureComponent button;
 
-        internal Rectangle buttonBounds { get => button.bounds; }
+        internal Rectangle ButtonBounds { get => button.bounds; }
 
         public StackButtonMenu(int pageX, int pageY, int pageWidth, int pageHeight) : base(pageX + pageWidth, yShift + pageY + pageHeight / 3 - Game1.tileSize + Game1.pixelZoom * 2, Game1.tileSize, Game1.tileSize)
      
@@ -45,7 +45,7 @@ namespace StackToNearbyChests
         {
             if (button.bounds.Contains(Game1.getOldMouseX(), Game1.getOldMouseY()))
             {
-                StackLogic.StackToNearbyChests(ModEntry.config.Radius);
+                StackLogic.StackToNearbyChests(ModEntry.Config.Radius);
             }
         }
 
@@ -54,7 +54,7 @@ namespace StackToNearbyChests
             base.allClickableComponents?.Clear();
             button = null;
             
-            button = new ClickableTextureComponent("", new Rectangle(pageX + pageWidth, yShift + pageY + pageHeight / 3 - Game1.tileSize + Game1.pixelZoom * 2, Game1.tileSize, Game1.tileSize), "", "Stack to nearby chests", ModEntry.buttonIcon, Rectangle.Empty, (float)Game1.pixelZoom, false)
+            button = new ClickableTextureComponent("", new Rectangle(pageX + pageWidth, yShift + pageY + pageHeight / 3 - Game1.tileSize + Game1.pixelZoom * 2, Game1.tileSize, Game1.tileSize), "", "Stack to nearby chests", ModEntry.ButtonIcon, Rectangle.Empty, (float)Game1.pixelZoom, false)
             {
                 drawShadow = false
             };
@@ -87,7 +87,7 @@ namespace StackToNearbyChests
         {
             const float maxScaleIncrease = 0.1f;
 
-            if (buttonBounds.Contains(x, y))
+            if (ButtonBounds.Contains(x, y))
             {
                 button.scale = Math.Min(button.scale + 0.04f, button.baseScale + maxScaleIncrease);
                 Game1.SetFreeCursorDrag();

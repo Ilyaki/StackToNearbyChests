@@ -85,8 +85,7 @@ namespace StackToNearbyChests
             }
 
             //Fridge
-            FarmHouse farmHouse = farmer?.currentLocation as FarmHouse;
-            if(farmHouse != null && farmHouse.upgradeLevel >= 1) //Lvl 1,2,3 is where you have fridge upgrade
+            if (farmer?.currentLocation is FarmHouse farmHouse && farmHouse.upgradeLevel >= 1) //Lvl 1,2,3 is where you have fridge upgrade
             {
                 Point fridgeLocation = farmHouse.getKitchenStandingSpot();
                 fridgeLocation.X += 2; fridgeLocation.Y += -1; //Fridge spot relative to kitchen spot
