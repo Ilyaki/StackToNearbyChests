@@ -28,23 +28,28 @@ namespace StackToNearbyChests
                     //need to compare quality
                     foreach (Item chestItem in chest.items)
                     {
-                        //
-                        foreach (Item playerItem in farmer.items)
+                        if (chestItem != null)
                         {
-                            int remainingStackSize = chestItem.getRemainingStackSpace();
-                            if (playerItem != null && chestItem != null && !(itemsToRemoveFromPlayer.Contains(playerItem)) && playerItem.canStackWith(chestItem) && playerItem.CompareTo(chestItem) == 0)
+                            foreach (Item playerItem in farmer.items)
                             {
-                                movedAtLeastOne = true;
-                                int amountToRemove = Math.Min(remainingStackSize, playerItem.Stack);
-                                chestItem.Stack += amountToRemove;
+                                if (playerItem != null)
+                                {
+                                    int remainingStackSize = chestItem.getRemainingStackSpace();
+                                    if (!(itemsToRemoveFromPlayer.Contains(playerItem)) && playerItem.canStackWith(chestItem) && playerItem.CompareTo(chestItem) == 0)
+                                    {
+                                        movedAtLeastOne = true;
+                                        int amountToRemove = Math.Min(remainingStackSize, playerItem.Stack);
+                                        chestItem.Stack += amountToRemove;
 
-                                if (playerItem.Stack > amountToRemove)
-                                {
-                                    playerItem.Stack -= amountToRemove;
-                                }
-                                else
-                                {
-                                    itemsToRemoveFromPlayer.Add(playerItem);
+                                        if (playerItem.Stack > amountToRemove)
+                                        {
+                                            playerItem.Stack -= amountToRemove;
+                                        }
+                                        else
+                                        {
+                                            itemsToRemoveFromPlayer.Add(playerItem);
+                                        }
+                                    }
                                 }
                             }
                         }
