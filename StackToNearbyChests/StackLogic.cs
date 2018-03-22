@@ -1,12 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using StardewValley;
+using StardewValley.Buildings;
 using StardewValley.Locations;
 using StardewValley.Objects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StackToNearbyChests
 {
@@ -60,7 +58,7 @@ namespace StackToNearbyChests
 
 
 
-                    //List of sounsd: https://gist.github.com/gasolinewaltz/46b1473415d412e220a21cb84dd9aad6
+                    //List of sounds: https://gist.github.com/gasolinewaltz/46b1473415d412e220a21cb84dd9aad6
                     if (movedAtLeastOne)
                         Game1.playSound(Game1.soundBank.GetCue("pickUpItem").Name);
 
@@ -98,6 +96,21 @@ namespace StackToNearbyChests
                 if (Math.Abs(farmerLocation.X - fridgeLocation.X) <= radius && Math.Abs(farmerLocation.Y - fridgeLocation.Y) <= radius)
                 {
                     yield return farmHouse.fridge;
+                }
+            }
+
+            //Mills and Junimo Huts
+            if (farmer.currentLocation is BuildableGameLocation buildableGameLocation)
+            {
+                foreach (Building building in buildableGameLocation.buildings)
+                {
+                    if ( Math.Abs(building.tileX - farmerLocation.X) <= radius  && Math.Abs(building.tileY - farmerLocation.Y) <= radius)
+                    {
+                        if (building is JunimoHut junimoHut)
+                            yield return junimoHut.output;
+                        if (building is Mill mill)
+                            yield return mill.output;
+                    }
                 }
             }
         }
