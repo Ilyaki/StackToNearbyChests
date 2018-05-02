@@ -63,10 +63,10 @@ namespace StackToNearbyChests
                     
                     if (newTab != 0 && currentTab == 0)
                     {
-                        //switched tab from inventory, so remove button
-                        //Game1.onScreenMenus.Remove(button);
-                        Game1.onScreenMenus.RemoveAll(x => x is StackButtonMenu);
-                        button = null;
+						//switched tab from inventory, so remove button
+						Game1.onScreenMenus.RemoveAll(x => x is StackButtonMenu);
+
+						button = null;
                         Game1.fadeToBlackRect = fadeToBlackTexture;
                     }
                     if(newTab == 0 && currentTab != 0)
@@ -91,25 +91,7 @@ namespace StackToNearbyChests
                     currentTab = null;
                 }
             };
-
-            /*StardewModdingAPI.Events.MenuEvents.MenuChanged += (o, e) => {
-                if (e.NewMenu is GameMenu menu)
-                {
-                    List<IClickableMenu> menuList = helper.Reflection.GetField<List<IClickableMenu>>(menu, "pages").GetValue();
-                    foreach (IClickableMenu page in menuList)
-                    {
-                        if (page is InventoryPage invPage )
-                        {
-                            //remove old one first
-                            //Game1.onScreenMenus.Remove(button);
-                            Game1.onScreenMenus.RemoveAll(x => x is StackButtonMenu);
-
-                            button = new StackButtonMenu(invPage.xPositionOnScreen, invPage.yPositionOnScreen, invPage.width, invPage.height);
-                            Game1.onScreenMenus.Add(button);
-                        }
-                    }
-                }
-            };*/
+			
             
             StardewModdingAPI.Events.MenuEvents.MenuClosed += (o, e) => { Game1.onScreenMenus.RemoveAll(x => x is StackButtonMenu); button = null; Game1.fadeToBlackRect = fadeToBlackTexture; };
             
