@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\DLLs\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,12 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerButtonReceiver.cs" />
-    <Compile Include="IList_Extensions.cs" />
+    <Compile Include="ButtonHolder.cs" />
+    <Compile Include="InventoryPage_Patcher.cs" />
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackButtonMenu.cs" />
     <Compile Include="StackLogic.cs" />
   </ItemGroup>
   <ItemGroup>
