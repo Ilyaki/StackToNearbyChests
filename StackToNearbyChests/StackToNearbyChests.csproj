@@ -49,6 +49,7 @@
     <Compile Include="InventoryPage_Patcher.cs" />
     <Compile Include="ModConfig.cs" />
     <Compile Include="ModEntry.cs" />
+    <Compile Include="Patch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StackLogic.cs" />
   </ItemGroup>
