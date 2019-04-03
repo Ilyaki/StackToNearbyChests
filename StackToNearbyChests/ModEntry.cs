@@ -13,7 +13,7 @@ namespace StackToNearbyChests
 			Config = helper.ReadConfig<ModConfig>();
 
 			ButtonHolder.ButtonIcon = helper.Content.Load<Texture2D>(@"icon.png");
-			
+
 			Patch.PatchAll(HarmonyInstance.Create("me.ilyaki.StackToNearbyChests"));
 		}
 	}
