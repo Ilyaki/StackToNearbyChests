@@ -1,5 +1,5 @@
 ﻿{
-   "Name": "StackToNearbyChests",
+   "Name": "Stack to Nearby Chests",
    "Author": "Ilyaki",
    "Version": "1.4.4",
    "Description": "Adds a button that stacks all items from your inventory into chests that have at least 1x of the item",
