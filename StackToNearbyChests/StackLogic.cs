@@ -78,7 +78,6 @@ namespace StackToNearbyChests
 					Vector2 checkLocation = Game1.tileSize * (farmerLocation + new Vector2(dx, dy));
 					StardewValley.Object blockObject = farmer.currentLocation.getObjectAt((int)checkLocation.X, (int)checkLocation.Y);
 
-					Console.WriteLine("Checking chest");
 					if (blockObject is Chest)
 					{
 						Chest chest = blockObject as Chest;
