@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
@@ -25,7 +25,7 @@ namespace StackToNearbyChests
 		/// <param name="e">The event data.</param>
 		private void OnGameLaunched(object sender, GameLaunchedEventArgs e)
 		{
-			Patch.PatchAll(HarmonyInstance.Create("me.ilyaki.StackToNearbyChests"));
+			Patch.PatchAll(new Harmony("me.ilyaki.StackToNearbyChests"));
 		}
 	}
 }
